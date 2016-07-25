@@ -1,6 +1,6 @@
 'use strict';
 
-import MouseLogger from '../mouse-logger.js';
+import MouseLogger from '../lib/mouse-logger.js';
 
 let globals = {};
 

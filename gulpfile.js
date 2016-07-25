@@ -8,12 +8,12 @@ gulp.task('default', ['clean', 'build']);
 
 gulp.task('clean', () => {
     return del([
-        'os-input-capture.js'
+        './lib/*'
     ]);
 });
 
 gulp.task('build', () => {
     return gulp.src(['src/*.js'])
                .pipe(babel())
-               .pipe(gulp.dest('./'));
+               .pipe(gulp.dest('./lib'));
 });

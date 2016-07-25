@@ -1,6 +1,6 @@
 'use strict';
 
-import WindowLogger from '../window-logger.js';
+import WindowLogger from '../lib/window-logger.js';
 
 let globals = {};
 

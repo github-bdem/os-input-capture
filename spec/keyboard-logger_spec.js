@@ -1,6 +1,6 @@
 'use strict';
 
-import KeyboardLogger from '../keyboard-logger.js';
+import KeyboardLogger from '../lib/keyboard-logger.js';
 import path from 'path';
 
 let globals = {};

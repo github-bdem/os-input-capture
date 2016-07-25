@@ -3,7 +3,6 @@
 var gulp = require('gulp');
 var del = require('del');
 var babel = require('gulp-babel');
-var run = require('gulp-run');
 
 gulp.task('default', ['clean', 'build']);
 

@@ -1,0 +1,30 @@
+{
+    "node": true,
+    "bitwise": false,
+    "camelcase": false,
+    "curly": false,
+    "eqeqeq": true,
+    "immed": true,
+    "latedef": "nofunc",
+    "newcap": true,
+    "noarg": true,
+    "quotmark": "single",
+    "regexp": true,
+    "undef": true,
+    "unused": false,
+    "strict": true,
+    "trailing": true,
+    "esnext": true,
+    "indent": 4,
+    "predef": [
+        "console",
+        "angular",
+        "module",
+        "describe",
+        "it",
+        "expect",
+        "beforeEach",
+        "afterEach"
+    ],
+    "noempty": true
+}

@@ -8,13 +8,13 @@ import winston from 'winston';
 import robot from 'robotjs';
 
 class MouseLogger {
-    constructor(opts) {
+    constructor(opts, parent) {
         const defaultOpts = {
             inputPath: '/dev/input/mice',
             outputDir: path.resolve(__dirname, 'mouse')
         };
         this.active = false;
-        this.opts = _.assign(opts, defaultOpts);
+        this.opts = _.assign(defaultOpts, opts);
         fse.ensureDir(this.opts.outputDir, err => console.log(err));
         this.readStream = fs.createReadStream(this.opts.inputPath)
                             .on('data', buffer => {
@@ -26,6 +26,10 @@ class MouseLogger {
                 new (winston.transports.File)({ filename: path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.input.log`) })
             ]
         });
+        this.parent = parent;
+    }
+    toggleActive() {
+        this.active = !this.active;
     }
     handleMouseEvent(buffer) {
         /* Mouse input event structuring graciously copied from
@@ -57,12 +61,6 @@ class MouseLogger {
         };
         ////// end shared work //////
 
-        if (event.middleBtn){
-            this.active = true;
-        }
-        if (event.rightBtn){
-            this.active = false;
-        }
         if (this.active) {
             if (event.leftBtn || event.rightBtn || event.middleBtn) {
                 // TODO: Handle clicking and dragging elegantly
@@ -77,14 +75,15 @@ class MouseLogger {
                     rightBtn: rightBtn
                 };
                 this.writeStream.log('info', eventData);
+                this.parent.getWindow();
             }
         }
     }
 }
 
 
-export default (opts) => {
+export default (opts, parent) => {
     if (!(this instanceof MouseLogger)) {
-        return new MouseLogger(opts);
+        return new MouseLogger(opts, parent);
     }
 };

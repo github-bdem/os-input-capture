@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "gulp && node ./lib/os-input-capture-cli.js",
-    "test": "gulp && jasmine"
+    "test": "gulp && jasmine",
+    "dev": "gulp dev && node ./lib/examples/basic-example.js"
   },
   "repository": {
     "type": "git",

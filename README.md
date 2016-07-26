@@ -50,14 +50,22 @@ import osInputCapture from 'os-import-capture';
 
 Then you can either use the entire module
 ```js
-let windowLogger = new OsInputCapture();
+let opts = {
+    keyboardOptions: {},
+    mouseOptions: {},
+    windowOptions: {}
+};
+let windowLogger = new OsInputCapture(opts);
 ```
 
 
 Or just what you need:
 * keyboard logging
 ```js
-let keyboardLogger = new OsInputCapture().keyboardLogger;
+let opts = {
+    keyboardOptions: {}
+};
+let keyboardLogger = new OsInputCapture(opts).keyboardLogger;
 ```
 
 * mouse logging

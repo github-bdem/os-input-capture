@@ -8,18 +8,24 @@ import fse from 'fs-extra';
 class WindowLogger {
     constructor(opts) {
         const defaultOpts = {
-            windowTitle: 'xboard: Fairy-Max 4.8V',
             outputDir: path.resolve(__dirname, 'window')
         };
-        this.opts = _.assign(opts, defaultOpts);
+        this.opts = _.assign(defaultOpts, opts);
         fse.ensureDir(this.opts.outputDir, err => console.log(err));
     }
     get() {
-        let imgPath = path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.jpg`);
-        let command = `import -window "${ this.opts.windowTitle }" -colorspace Gray jpg:${ imgPath }`;
-        execa.shell(command).catch(error => {
-            console.log('caught', error);
-        });
+        if (this.active) {
+            if (!_.isUndefined(this.opts.windowTitle)) {
+                let imgPath = path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.jpg`);
+                let command = `import -window "${ this.opts.windowTitle }" -colorspace Gray jpg:${ imgPath }`;
+                execa.shell(command).catch(error => { console.log('caught', error); });
+            } else {
+                console.error('Window title was not provided as an option to window-logger');
+            }
+        }
+    }
+    toggleActive() {
+        this.active = !this.active;
     }
 }
 

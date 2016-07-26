@@ -11,4 +11,8 @@ describe('WindowLogger', () => {
     it('should be defined', () => {
         expect(globals.windowLogger).toBeDefined();
     });
+    describe('get()', () => {
+        it('should throw error if window title not provided', () => {});
+        it('should get a snapshot of the correct window', () => {});
+    });
 });

@@ -3,7 +3,17 @@ import KeyboardLogger from './keyboard-logger.js';
 import MouseLogger from './mouse-logger.js';
 import WindowLogger from './window-logger.js';
 
-// let opts = {my:'test'};
-// console.log(typeof(KeyboardLogger));
-// let keylogger = new KeyboardLogger(opts);
-// console.log(keylogger.test());
+class OsInputCapture {
+    constructor(opts) {
+        this.opts = opts;
+        this.keyboardLogger = new KeyboardLogger();
+        this.mouseLogger = new MouseLogger();
+        this.windowLogger = new WindowLogger();
+    }
+}
+
+export default (opts) => {
+    if (!(this instanceof OsInputCapture)) {
+        return new OsInputCapture(opts);
+    }
+};

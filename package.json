@@ -4,7 +4,7 @@
   "description": "A keyboard, mouse, and window capturing module for node.js",
   "main": "lib/index.js",
   "scripts": {
-    "start": "gulp && node ./lib/os-input-capture.js",
+    "start": "gulp && node ./lib/os-input-capture-cli.js",
     "test": "gulp && jasmine"
   },
   "repository": {

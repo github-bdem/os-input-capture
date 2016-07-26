@@ -2,8 +2,8 @@
 
 import _  from 'lodash';
 import path from 'path';
-import { fs as fse } from 'fs-extra';
 import fs from 'fs';
+import fse from 'fs-extra';
 import winston from 'winston';
 
 class KeyboardLogger {
@@ -13,7 +13,12 @@ class KeyboardLogger {
             keyboardOutputDir: path.resolve(__dirname, 'keyboard')
         };
         this.active = false;
-        this.opts = _.assign(defaultOpts, opts);
+        console.log('defaultOpts', defaultOpts);
+        console.log('opts', opts);
+        this.opts = _.assign(opts, defaultOpts);
+        console.log('defaultOpts', defaultOpts);
+        console.log('this.opts', this.opts);
+        fse.ensureDir(this.opts.keyboardOutputDir, err => console.log(err));
         this.readStream = fs.createReadStream(this.opts.kbdPath)
                             .on('data', buffer => {
                                 this.handleKeyboardEvent(buffer);

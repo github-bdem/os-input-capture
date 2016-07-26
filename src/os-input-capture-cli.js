@@ -2,6 +2,7 @@
 
 import inquirer from 'inquirer';
 import OsInputCapture from './os-input-capture.js';
+import del from 'del';
 
 inquirer.prompt([
   {
@@ -27,6 +28,8 @@ inquirer.prompt([
         windowLogger.get();
     }
     if (answers.action === 'clean') {
-        console.log(JSON.stringify(answers, null, '  '));
+        del([
+            './lib/*'
+        ]);
     }
 });

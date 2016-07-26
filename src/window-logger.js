@@ -1,7 +1,4 @@
 'use strict';
-//xboard: Fairy-Max 4.8V
-// os.system("import -window "Nuclear Throne" -colorspace Gray jpg:" + os.path.join(output_path, "img-" + str(
-//        event_index) + "-training.jpg"))
 
 import path from 'path';
 import execa from 'execa';

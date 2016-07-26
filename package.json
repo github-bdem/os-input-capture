@@ -34,6 +34,7 @@
     "jasmine-es6": "^0.2.1"
   },
   "dependencies": {
+    "execa": "^0.4.0",
     "fs-extra": "^0.30.0",
     "inquirer": "^1.1.2",
     "lodash": "^4.14.0",

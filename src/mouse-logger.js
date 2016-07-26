@@ -87,4 +87,4 @@ export default (opts) => {
     if (!(this instanceof MouseLogger)) {
         return new MouseLogger(opts);
     }
-}
+};

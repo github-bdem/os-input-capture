@@ -8,8 +8,8 @@ let globals = {};
 describe('KeyboardLogger', () => {
     beforeEach(() => {
         globals.defaultOpts = {
-            kbdPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
-            keyboardOutputDir: path.resolve(__dirname, 'keyboard')
+            inputPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
+            outputDir: path.resolve(__dirname, 'keyboard')
         };
         globals.keyboardLogger = new KeyboardLogger();
     });

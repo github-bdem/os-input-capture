@@ -9,24 +9,20 @@ import winston from 'winston';
 class KeyboardLogger {
     constructor(opts) {
         const defaultOpts = {
-            kbdPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
-            keyboardOutputDir: path.resolve(__dirname, 'keyboard')
+            inputPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
+            outputDir: path.resolve(__dirname, 'keyboard')
         };
         this.active = false;
-        console.log('defaultOpts', defaultOpts);
-        console.log('opts', opts);
         this.opts = _.assign(opts, defaultOpts);
-        console.log('defaultOpts', defaultOpts);
-        console.log('this.opts', this.opts);
-        fse.ensureDir(this.opts.keyboardOutputDir, err => console.log(err));
-        this.readStream = fs.createReadStream(this.opts.kbdPath)
+        fse.ensureDir(this.opts.outputDir, err => console.log(err));
+        this.readStream = fs.createReadStream(this.opts.inputPath)
                             .on('data', buffer => {
                                 this.handleKeyboardEvent(buffer);
                             });
         this.writeStream = new (winston.Logger)({
             transports: [
                 new (winston.transports.Console)(),
-                new (winston.transports.File)({ filename: path.resolve(this.opts.keyboardOutputDir, `${ new Date(Date.now()).toISOString() }.input.log`) })
+                new (winston.transports.File)({ filename: path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.input.log`) })
             ]
         });
     }

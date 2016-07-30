@@ -21,12 +21,10 @@ class KeyboardLogger {
                             });
         this.writeStream = new (winston.Logger)({
             transports: [
-                new (winston.transports.Console)(),
                 new (winston.transports.File)({ filename: path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.input.log`) })
             ]
         });
         this.parent = parent;
-        console.log(parent);
     }
     toggleActive() {
         this.active = !this.active;
@@ -51,4 +49,4 @@ export default (opts, parent) => {
     if (!(this instanceof KeyboardLogger)) {
         return new KeyboardLogger(opts, parent);
     }
-}
+};

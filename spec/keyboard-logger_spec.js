@@ -10,6 +10,10 @@ let globals = {};
 
 describe('KeyboardLogger', () => {
     beforeEach(() => {
+        globals.parent = {
+            toggleActive: () => {},
+            getWindow: () => {}
+        };
         globals.defaultOpts = {
             inputPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
             outputDir: path.resolve(__dirname, '../lib/', 'keyboard')
@@ -37,8 +41,77 @@ describe('KeyboardLogger', () => {
         });
     });
     describe('handleKeyboardEvent(buffer)', () => {
-        it('should activate the logger when l is pressed', () => {});
-        it('should kill the logger when k is pressed', () => {});
-        it('should log keyboard events when active', () => {});
+        it('should call parent toggle active function when key 38 is pressed', () => {
+            let keyboardLogger = new globals.KeyboardLogger();
+            keyboardLogger.parent = globals.parent;
+            keyboardLogger.active = false;
+
+            spyOn(globals.parent, 'toggleActive');
+            let fakeEventBuffer = Buffer.alloc(50);
+            let fakeCode = 38;
+            let fakeValue = 1;
+
+            fakeEventBuffer.writeUInt16LE(fakeCode, 20);
+            fakeEventBuffer.writeInt32LE(fakeValue, 44);
+
+            keyboardLogger.handleKeyboardEvent(fakeEventBuffer);
+
+            expect(globals.parent.toggleActive).toHaveBeenCalled();
+
+        });
+        it('should call parent toggle active function when key 37 is pressed', () => {
+            let keyboardLogger = new globals.KeyboardLogger();
+            keyboardLogger.parent = globals.parent;
+            keyboardLogger.active = true;
+
+            spyOn(globals.parent, 'toggleActive');
+            let fakeEventBuffer = Buffer.alloc(50);
+            let fakeCode = 37;
+            let fakeValue = 1;
+
+            fakeEventBuffer.writeUInt16LE(fakeCode, 20);
+            fakeEventBuffer.writeInt32LE(fakeValue, 44);
+
+            keyboardLogger.handleKeyboardEvent(fakeEventBuffer);
+
+            expect(globals.parent.toggleActive).toHaveBeenCalled();
+
+        });
+        it('should log keyboard events when active', () => {
+            let keyboardLogger = new globals.KeyboardLogger();
+            keyboardLogger.parent = globals.parent;
+            keyboardLogger.active = true;
+
+            spyOn(keyboardLogger.writeStream, 'log');
+
+            let fakeEventBuffer = Buffer.alloc(50);
+            let fakeCode = 37;
+            let fakeValue = 1;
+
+            fakeEventBuffer.writeUInt16LE(fakeCode, 20);
+            fakeEventBuffer.writeInt32LE(fakeValue, 44);
+
+            keyboardLogger.handleKeyboardEvent(fakeEventBuffer);
+
+            expect(keyboardLogger.writeStream.log).toHaveBeenCalled();
+        });
+        it('should call parent getWindow function when active', () => {
+            let keyboardLogger = new globals.KeyboardLogger();
+            keyboardLogger.parent = globals.parent;
+            keyboardLogger.active = true;
+
+            spyOn(globals.parent, 'getWindow');
+
+            let fakeEventBuffer = Buffer.alloc(50);
+            let fakeCode = 37;
+            let fakeValue = 1;
+
+            fakeEventBuffer.writeUInt16LE(fakeCode, 20);
+            fakeEventBuffer.writeInt32LE(fakeValue, 44);
+
+            keyboardLogger.handleKeyboardEvent(fakeEventBuffer);
+
+            expect(globals.parent.getWindow).toHaveBeenCalled();
+        });
     });
 });

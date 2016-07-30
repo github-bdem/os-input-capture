@@ -22,7 +22,6 @@ class MouseLogger {
                             });
         this.writeStream = new (winston.Logger)({
             transports: [
-                new (winston.transports.Console)(),
                 new (winston.transports.File)({ filename: path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.input.log`) })
             ]
         });

@@ -24,7 +24,9 @@
         "it",
         "expect",
         "beforeEach",
-        "afterEach"
+        "afterEach",
+        "spyOn",
+        "fdescribe"
     ],
     "noempty": true
 }

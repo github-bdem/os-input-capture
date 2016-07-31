@@ -10,6 +10,14 @@ let globals = {};
 
 describe('MouseLogger', () => {
     beforeEach(() => {
+        globals.parent = {
+            toggleActive: () => {},
+            getWindow: () => {}
+        };
+        globals.defaultOpts = {
+            inputPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
+            outputDir: path.resolve(__dirname, '../lib/', 'keyboard')
+        };
         globals.defaultOpts = {
             inputPath: '/dev/input/mice',
             outputDir: path.resolve(__dirname, '../lib/', 'mouse')
@@ -37,7 +45,56 @@ describe('MouseLogger', () => {
         });
     });
     describe('handleMouseEvent(buffer)', () => {
-        it('should toggle active when lmb and rmb are pressed', () => {});
-        it('should log mouse events when active', () => {});
+        it('should log mouse events when active and lmb is pressed', () => {
+            let mouseLogger = new globals.MouseLogger();
+            mouseLogger.parent = globals.parent;
+            mouseLogger.active = true;
+
+            spyOn(mouseLogger.writeStream, 'log');
+
+            let fakeEventBuffer = Buffer.alloc(50);
+
+            _.forEach((1 >>> 0).toString(2), (value, index) => {
+                fakeEventBuffer[index] = value;
+            });
+
+            mouseLogger.handleMouseEvent(fakeEventBuffer);
+
+            expect(mouseLogger.writeStream.log).toHaveBeenCalled();
+        });
+        it('should log mouse events when active and mmb is pressed', () => {
+            let mouseLogger = new globals.MouseLogger();
+            mouseLogger.parent = globals.parent;
+            mouseLogger.active = true;
+
+            spyOn(mouseLogger.writeStream, 'log');
+
+            let fakeEventBuffer = Buffer.alloc(50);
+
+            _.forEach((4 >>> 0).toString(2), (value, index) => {
+                fakeEventBuffer[index] = value;
+            });
+
+            mouseLogger.handleMouseEvent(fakeEventBuffer);
+
+            expect(mouseLogger.writeStream.log).toHaveBeenCalled();
+        });
+        it('should log mouse events when active and rmb is pressed', () => {
+            let mouseLogger = new globals.MouseLogger();
+            mouseLogger.parent = globals.parent;
+            mouseLogger.active = true;
+
+            spyOn(mouseLogger.writeStream, 'log');
+
+            let fakeEventBuffer = Buffer.alloc(50);
+
+            _.forEach((2 >>> 0).toString(2), (value, index) => {
+                fakeEventBuffer[index] = value;
+            });
+
+            mouseLogger.handleMouseEvent(fakeEventBuffer);
+
+            expect(mouseLogger.writeStream.log).toHaveBeenCalled();
+        });
     });
 });

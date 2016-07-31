@@ -68,7 +68,11 @@ class MouseLogger {
                     rightBtn: rightBtn
                 };
                 this.writeStream.log('info', eventData);
-                this.parent.getWindow();
+                if (!_.isUndefined(this.parent)) {
+                    if (!_.isUndefined(this.parent.getWindow)) {
+                        this.parent.getWindow();
+                    }
+                }
             }
         }
     }

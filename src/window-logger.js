@@ -18,9 +18,7 @@ class WindowLogger {
             if (!_.isUndefined(this.opts.windowTitle)) {
                 let imgPath = path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.jpg`);
                 let command = `import -window "${ this.opts.windowTitle }" -colorspace Gray jpg:${ imgPath }`;
-                execa.shell(command).catch(error => { console.log('caught', error); });
-            } else {
-                console.error('Window title was not provided as an option to window-logger');
+                execa.shell(command);
             }
         }
     }

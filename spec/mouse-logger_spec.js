@@ -15,10 +15,6 @@ describe('MouseLogger', () => {
             getWindow: () => {}
         };
         globals.defaultOpts = {
-            inputPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
-            outputDir: path.resolve(__dirname, '../lib/', 'keyboard')
-        };
-        globals.defaultOpts = {
             inputPath: '/dev/input/mice',
             outputDir: path.resolve(__dirname, '../lib/', 'mouse')
         };

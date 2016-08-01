@@ -18,7 +18,8 @@
     "logging",
     "logger",
     "screen",
-    "window"
+    "window",
+    "keylogger"
   ],
   "author": "bdell",
   "license": "MIT",

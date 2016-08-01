@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "gulp && node ./lib/os-input-capture-cli.js",
-    "test": "gulp && jasmine",
+    "test": "gulp && echo 'oic' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/os-input-capture_spec.js && echo 'keyboard' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/keyboard-logger_spec.js && echo 'mouse' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/mouse-logger_spec.js && echo 'window' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/window-logger_spec.js",
     "dev": "gulp dev && node ./lib/examples/basic-example.js"
   },
   "repository": {

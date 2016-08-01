@@ -31,15 +31,21 @@ class KeyboardLogger {
     }
     handleKeyboardEvent(buffer) {
         let eventData = { timeStamp: Date.now(), code: buffer.readUInt16LE(20), value: buffer.readInt32LE(44) };
-        if (eventData.code === 38 && eventData.value === 1 && !this.active) {
-            this.parent.toggleActive();
-        }
-        if (eventData.code === 37 && eventData.value === 1 && this.active) {
-            this.parent.toggleActive();
+        if (((eventData.code === 38 && !this.active) || (eventData.code === 37 && this.active)) && eventData.value === 1 ) {
+            if (!_.isUndefined(this.parent)) {
+                this.parent.toggleActive();
+            }
+            if (_.isUndefined(this.parent)) {
+                this.toggleActive();
+            }
         }
         if (this.active) {
             this.writeStream.log('info', eventData);
-            this.parent.getWindow();
+            if (!_.isUndefined(this.parent)) {
+                if (!_.isUndefined(this.parent.getWindow)) {
+                    this.parent.getWindow();
+                }
+            }
         }
     }
 }

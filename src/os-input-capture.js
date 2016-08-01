@@ -81,7 +81,11 @@ class OsInputCapture {
 
 let oic = exports;
 
-oic.OsInputCapture = OsInputCapture;
+oic.OsInputCapture = (loggers, opts) => {
+    if (!(this instanceof OsInputCapture)) {
+        return new OsInputCapture(loggers, opts);
+    }
+};
 oic.KeyboardLogger = KeyboardLogger;
 oic.MouseLogger = MouseLogger;
 oic.WindowLogger = WindowLogger;

@@ -1,5 +1,5 @@
 # OS Input Capture (oic)
-This module adds operating system level keyboard, mouse, and window logging capabilities to your project.  Unlike the other loggers available for node, this logger does not require you to be typing in a specific window, it will snag all input keystrokes and mouse button events no matter what application the user currently has active.  Additionally this module allows you to take screen shots any available window on both keyboard and mouse events.
+This module adds operating system level keyboard, mouse, and window logging capabilities to your project.  Unlike the other loggers available for node, this logger does not require you to be typing in a specific window, it will snag all input keystrokes and mouse button events no matter what application the user currently has active.  Additionally this module allows you to take screen shots of any available window on both keyboard and mouse events.
 
 ---
 
@@ -37,6 +37,7 @@ npm -i os-input-capture
 ## Disclaimer
 I wrote this module to allow me to start crafting some input data sets for a learning machine project I am tinkering with.  That being said, I know this module could be used for some pretty nefarious stuff.  All that I ask is that you, as the user of this package, please keep in mind other peoples privacy when writing anything that uses os-input-capture, and most importantly
 > ###*DO NOT USE THIS MODULE TO BE A JERK*
+
 thanks.
 
 ---
@@ -51,7 +52,7 @@ import oic from 'os-input-capture';
     ---
     NOTE: Each logger will use its respective
     configuration values (shown below) if you do not
-     explicitly provide you own during instantiation.
+    explicitly provide you own during instantiation.
 */
 let options = {
     keyboardOptions: {
@@ -75,7 +76,7 @@ let desiredLoggers = ['keyboard', 'mouse', 'window'];
 let logger = oic.OsInputCapture(desiredLoggers, options);
 ```
 ###Creating standalone loggers
-All loggers are available for import by themselves
+All loggers are available for use without the top level `OsInputCapture` class
 ```js
 // configuration
 let keyboardOptions = {
@@ -89,19 +90,15 @@ let kbdLogger = oic.KeyboardLogger(keyboardOptions);
 ###How to start logging keys
 By default logging is started when the `L` button is pressed on the keyboard, and stopped (or killed) when the `K` button is pressed.  Currently the mouse logger has to be manually activated as shown below
 ```js
-let mouseOptions = {
-    inputPath: inputPath: '/dev/input/mice',
-    outputDir: path.resolve(__dirname, 'mouse')
-}
-
-let mousey = oic.MouseLogger(mouseOptions);
+// creating mouse logger class with default options
+let mousey = oic.MouseLogger();
 mousey.active = true;
 ```
 ###Getting screen shots
 If you want to be able to get screen shots of windows, you currently have to use the top level `oic.OsInputCapture` class, as the `MouseLogger` and `KeyboardLogger` classes chain the call to `WindowLogger.get()` through `oic.OsInputCapture`.
 
 ```js
-//main.js
+// main.js
 let options = {
     keyboardOptions: {
         inputPath: '/dev/input/by-path/platform-i8042-serio-0-event-kbd',
@@ -134,8 +131,6 @@ getWindow() {
     }
 }
 ```
-##Note about default configuration options
-Each logger has a set of default options that it will fall back on if you don't specify custom overrides.  Here are all
 
 ##Testing
 Unit testing via jasmine is available via

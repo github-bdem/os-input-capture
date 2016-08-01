@@ -20,42 +20,42 @@ class OsInputCapture {
     }
     addKeyboardLogger(opts) {
         if (_.isUndefined(this.keyboardLogger)) {
-            let keyboardOptions;
             if (!_.isUndefined(opts)) {
                 let { keyboardOptions } = opts;
+                this.keyboardLogger = new KeyboardLogger(keyboardOptions, this);
             }
             if (_.isUndefined(opts)) {
                 let { keyboardOptions } = this.opts;
+                this.keyboardLogger = new KeyboardLogger(keyboardOptions, this);
             }
-            this.keyboardLogger = new KeyboardLogger(keyboardOptions, this);
         } else {
             throw new Error('logger already present');
         }
     }
     addMouseLogger(opts) {
         if (_.isUndefined(this.mouseLogger)) {
-            let mouseOptions;
             if (!_.isUndefined(opts)) {
                 let { mouseOptions } = opts;
+                this.mouseLogger = new MouseLogger(mouseOptions, this);
             }
             if (_.isUndefined(opts)) {
                 let { mouseOptions } = this.opts;
+                this.mouseLogger = new MouseLogger(mouseOptions, this);
             }
-            this.mouseLogger = new MouseLogger(mouseOptions, this);
         } else {
             throw new Error('logger already present');
         }
     }
     addWindowLogger(opts) {
         if (_.isUndefined(this.windowLogger)) {
-            let windowOptions;
             if (!_.isUndefined(opts)) {
                 let { windowOptions } = opts;
+                this.windowLogger = new WindowLogger(windowOptions, this);
             }
             if (_.isUndefined(opts)) {
                 let { windowOptions } = this.opts;
+                this.windowLogger = new WindowLogger(windowOptions, this);
             }
-            this.windowLogger = new WindowLogger(windowOptions, this);
         } else {
             throw new Error('logger already present');
         }

@@ -1,7 +1,7 @@
 {
   "name": "os-input-capture",
   "version": "1.0.1",
-  "description": "A keyboard, mouse, and window capturing module for node.js",
+  "description": "A keyboard, mouse, and window logging module for node.js",
   "main": "lib/index.js",
   "scripts": {
     "start": "gulp && node ./lib/os-input-capture-cli.js",

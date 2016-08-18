@@ -139,4 +139,4 @@ Unit testing via jasmine is available via
 ---
 ## License
 
-**os-input-capture** is Copyright (c) 2016 Brandon DeMello [@bdell](https://github.com/bdell) and licenced under the MIT licence. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE.md file for more details.
+**os-input-capture** is Copyright (c) 2016 Brandon DeMello [@bdell](https://github.com/bdell) and licenced under the MIT licence. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.

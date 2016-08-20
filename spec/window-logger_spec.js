@@ -13,7 +13,8 @@ describe('WindowLogger', () => {
     beforeEach(() => {
         globals.defaultOpts = {
             outputDir: path.resolve(__dirname, '../lib', 'window'),
-            colorMode: '-monochrome'
+            colorMode: '-monochrome',
+            imageType: 'jpg'
 
         };
         globals.testOpts = {

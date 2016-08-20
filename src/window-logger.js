@@ -9,7 +9,8 @@ class WindowLogger {
     constructor(opts) {
         const defaultOpts = {
             outputDir: path.resolve(__dirname, 'window'),
-            colorMode: '-monochrome'
+            colorMode: '-monochrome',
+            imageType: 'jpg'
         };
         this.opts = _.assign(defaultOpts, opts);
         fse.ensureDir(this.opts.outputDir, err => console.log(err));
@@ -18,7 +19,7 @@ class WindowLogger {
         if (this.active) {
             if (!_.isUndefined(this.opts.windowTitle)) {
                 let imgPath = path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.jpg`);
-                let command = `import -window "${ this.opts.windowTitle }" ${ this.opts.colorMode } jpg:${ imgPath }`;
+                let command = `import -window "${ this.opts.windowTitle }" ${ this.opts.colorMode } ${ this.opts.imageType }:${ imgPath }`;
                 execa.shell(command);
             }
         }

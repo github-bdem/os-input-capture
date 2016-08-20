@@ -80,7 +80,8 @@ describe('oic', () => {
                 let fakeOpts = {
                     windowOptions: {
                         outputDir: 'fakeOutputPath',
-                        colorMode: '-fakeMode'
+                        colorMode: '-fakeMode',
+                        imageType: 'fakeImageType'
                     }
                 };
                 let inputLogger = new globals.oic.OsInputCapture();

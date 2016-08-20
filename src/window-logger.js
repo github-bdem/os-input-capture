@@ -8,7 +8,8 @@ import fse from 'fs-extra';
 class WindowLogger {
     constructor(opts) {
         const defaultOpts = {
-            outputDir: path.resolve(__dirname, 'window')
+            outputDir: path.resolve(__dirname, 'window'),
+            colorMode: '-monochrome'
         };
         this.opts = _.assign(defaultOpts, opts);
         fse.ensureDir(this.opts.outputDir, err => console.log(err));
@@ -17,7 +18,7 @@ class WindowLogger {
         if (this.active) {
             if (!_.isUndefined(this.opts.windowTitle)) {
                 let imgPath = path.resolve(this.opts.outputDir, `${ new Date(Date.now()).toISOString() }.jpg`);
-                let command = `import -window "${ this.opts.windowTitle }" -colorspace Gray jpg:${ imgPath }`;
+                let command = `import -window "${ this.opts.windowTitle }" ${ this.opts.colorMode } jpg:${ imgPath }`;
                 execa.shell(command);
             }
         }

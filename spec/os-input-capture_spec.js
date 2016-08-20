@@ -79,7 +79,8 @@ describe('oic', () => {
             it('should use supplied opts if present', () => {
                 let fakeOpts = {
                     windowOptions: {
-                        outputDir: 'fakeOutputPath'
+                        outputDir: 'fakeOutputPath',
+                        colorMode: '-fakeMode'
                     }
                 };
                 let inputLogger = new globals.oic.OsInputCapture();

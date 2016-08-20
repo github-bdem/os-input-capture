@@ -12,7 +12,9 @@ let globals = {};
 describe('WindowLogger', () => {
     beforeEach(() => {
         globals.defaultOpts = {
-            outputDir: path.resolve(__dirname, '../lib', 'window')
+            outputDir: path.resolve(__dirname, '../lib', 'window'),
+            colorMode: '-monochrome'
+
         };
         globals.testOpts = {
             outputDir: path.resolve(__dirname, '../lib', 'window'),

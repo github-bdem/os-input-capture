@@ -1,6 +1,9 @@
 # OS Input Capture (oic)
 This module adds operating system level keyboard, mouse, and window logging capabilities to your project.  Unlike the other loggers available for node, this logger does not require you to be typing in a specific window, it will snag all input keystrokes and mouse button events no matter what application the user currently has active.  Additionally this module allows you to take screen shots of any available window on both keyboard and mouse events.
 
+##Note
+>Please make sure to use version 2.0.1 or greater of this package as it fixes a major import error.
+
 ---
 
 ##Dependencies
@@ -139,4 +142,4 @@ Unit testing via jasmine is available via
 ---
 ## License
 
-**os-input-capture** is Copyright (c) 2016 Brandon DeMello [@bdell](https://github.com/bdell) and licenced under the MIT licence. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.
+**os-input-capture** is Copyright (c) 2016 Brandon DeMello [@bdell](https://github.com/bdell) and licenced under the MIT license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.

@@ -2,7 +2,7 @@
   "name": "os-input-capture",
   "version": "2.0.0",
   "description": "A keyboard, mouse, and window logging module for node.js",
-  "main": "lib/index.js",
+  "main": "lib/os-input-capture.js",
   "scripts": {
     "start": "gulp && node ./lib/os-input-capture-cli.js",
     "test": "gulp && echo 'oic' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/os-input-capture_spec.js && echo 'keyboard' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/keyboard-logger_spec.js && echo 'mouse' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/mouse-logger_spec.js && echo 'window' && ./node_modules/jasmine-es6/bin/jasmine.js ./spec/window-logger_spec.js",

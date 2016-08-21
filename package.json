@@ -1,6 +1,6 @@
 {
   "name": "os-input-capture",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A keyboard, mouse, and window logging module for node.js",
   "main": "lib/os-input-capture.js",
   "scripts": {

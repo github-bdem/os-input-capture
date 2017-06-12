@@ -1,14 +1,19 @@
 # OS Input Capture (oic)
 This module adds operating system level keyboard, mouse, and window logging capabilities to your project.  Unlike the other loggers available for node, this logger does not require you to be typing in a specific window, it will snag all input keystrokes and mouse button events no matter what application the user currently has active.  Additionally this module allows you to take screen shots of any available window on both keyboard and mouse events.
 
-##Note
+
+## Note
+
+
 >Please make sure to use version 2.0.1 or greater of this package as it fixes a major import error.
 
 ---
 
-##Dependencies
+## Dependencies
+
 > Currently this module only works on linux hosts and must be launched with the ability to access `/dev/input/`, which is generally restricted to `root` or `sudo` accounts.  Additionally if you would like to be able to capture images of a specific window, you must have the `imagemagick` command line tool installed on the host machine.
-###Node
+
+### Node
 ```js
 "devDependencies": {
     "babel-cli": "^6.11.4",
@@ -29,7 +34,7 @@ This module adds operating system level keyboard, mouse, and window logging capa
 
 ---
 
-##Installation
+## Installation
 Install the package through npm
 ```bash
 npm -i os-input-capture
@@ -45,8 +50,8 @@ thanks.
 
 ---
 
-##Example Usage
-###Top level convenience class
+## Example Usage
+### Top level convenience class
 
 ```js
 import oic from 'os-input-capture';
@@ -78,7 +83,7 @@ let desiredLoggers = ['keyboard', 'mouse', 'window'];
 // creating our actual os logger!
 let logger = oic.OsInputCapture(desiredLoggers, options);
 ```
-###Creating standalone loggers
+### Creating standalone loggers
 All loggers are available for use without the top level `OsInputCapture` class
 ```js
 // configuration
@@ -90,14 +95,14 @@ let keyboardOptions = {
 // instantiation
 let kbdLogger = oic.KeyboardLogger(keyboardOptions);
 ```
-###How to start logging keys
+### How to start logging keys
 By default logging is started when the `L` button is pressed on the keyboard, and stopped (or killed) when the `K` button is pressed.  Currently the mouse logger has to be manually activated as shown below
 ```js
 // creating mouse logger class with default options
 let mousey = oic.MouseLogger();
 mousey.active = true;
 ```
-###Getting screen shots
+### Getting screen shots
 If you want to be able to get screen shots of windows, you currently have to use the top level `oic.OsInputCapture` class, as the `MouseLogger` and `KeyboardLogger` classes chain the call to `WindowLogger.get()` through `oic.OsInputCapture`.
 
 ```js
@@ -135,7 +140,7 @@ getWindow() {
 }
 ```
 
-##Testing
+## Testing
 Unit testing via jasmine is available via
 `npm test`.
 

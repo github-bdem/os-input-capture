@@ -44,7 +44,7 @@ npm -i os-input-capture
 
 ## Disclaimer
 I wrote this module to allow me to start crafting some input data sets for a learning machine project I am tinkering with.  That being said, I know this module could be used for some pretty nefarious stuff.  All that I ask is that you, as the user of this package, please keep in mind other peoples privacy when writing anything that uses os-input-capture, and most importantly
-> ###*DO NOT USE THIS MODULE TO BE A JERK*
+### *DO NOT USE THIS MODULE TO BE A JERK*
 
 thanks.
 
